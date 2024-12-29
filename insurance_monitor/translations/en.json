@@ -1,0 +1,21 @@
+{
+    "title": "Insurance Monitor",
+    "config": {
+        "step": {
+            "user": {
+                "data": {
+                    "policy_number": "Insurance number",
+                    "cost_per_period": "Cost per period",
+                    "period": "Period",
+                    "start_date": "Startdate",
+                    "end_date": "Enddate",
+                    "type": "Insurance type",
+                    "insurance_company": "Insurance company",
+                    "remarks": "Remarks"
+                },
+                "description": "Add more information about the insurance.",
+                "title": "Add insurance"
+            }
+        }
+    }
+}

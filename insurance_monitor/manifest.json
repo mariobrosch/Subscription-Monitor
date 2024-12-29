@@ -1,0 +1,10 @@
+{
+    "domain": "insurance_monitor",
+    "name": "Insurance Monitor",
+    "version": "1.0",
+    "documentation": "https://example.com",
+    "requirements": [],
+    "dependencies": [],
+    "codeowners": ["@mariobrosch"],
+    "config_flow": true
+}

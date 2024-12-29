@@ -1,0 +1,1 @@
+DOMAIN = "insurance_monitor"
