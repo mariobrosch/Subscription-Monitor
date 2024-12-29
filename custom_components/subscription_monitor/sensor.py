@@ -14,7 +14,7 @@ class SubscriptionSensor(SensorEntity):
         self._subscription = subscription
         # We are grouping the subscriptions by category, this makes it easier to group them automatically in the integration by for example streaming or insurances
         self._attr_name = f"Subscription: {subscription['category']} - {subscription["service_provider"]}"
-        self._attr_unique_id = subscription["subscription_id"] + subscription["service_provider"]
+        self._attr_unique_id = f"{subscription["subscription_id"]}-{subscription["service_provider"]}"
 
     @property
     def state(self):
