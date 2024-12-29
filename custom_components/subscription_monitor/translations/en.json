@@ -10,8 +10,9 @@
                     "start_date": "Startdate",
                     "end_date": "Enddate",
                     "type": "Type of subscription",
-                    "company": "Company",
+                    "service_provider": "Service provider",
                     "remarks": "Remarks",
+                    "notice_period": "Notice period",
                     "who": "Who or what is (for example Jane has this subscription))"
                 },
                 "description": "Add more information about the subscription.",

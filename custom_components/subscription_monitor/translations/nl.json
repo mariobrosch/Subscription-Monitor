@@ -1,20 +1,19 @@
 {
-    "title": "Abonnement Monitor",
     "config": {
         "step": {
             "user": {
                 "data": {
-                    "subscription_id": "Abonnement id",
+                    "subscription_id": "Abonnement ID",
                     "cost_per_period": "Kosten per periode",
                     "period": "Periode",
                     "start_date": "Startdatum",
                     "end_date": "Einddatum",
                     "type": "Type abonnement",
-                    "company": "Bedrijf",
-                    "remarks": "Opmerkingen",
-                    "who": "Wie of wat heeft dit abonnement"
+                    "service_provider": "Dienstverlener",
+                    "notice_period": "Opzegtermijn",
+                    "remarks": "Opmerkingen"
                 },
-                "description": "Extra opmerkingen over het abonnement.",
+                "description": "Voer de details van het abonnement in.",
                 "title": "Abonnement toevoegen"
             }
         }
