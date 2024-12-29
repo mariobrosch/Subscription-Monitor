@@ -3,8 +3,8 @@ from .const import DOMAIN
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
     """Set up Subscription Monitor sensors from a config entry."""
-    insurance = config_entry.data
-    async_add_entities([SubscriptionSensor(insurance)], True)
+    subscription = config_entry.data
+    async_add_entities([SubscriptionSensor(subscription)], True)
 
 class SubscriptionSensor(SensorEntity):
     def __init__(self, subscription):

@@ -2,7 +2,7 @@
     "domain": "subscription_monitor",
     "name": "Subscription Monitor",
     "version": "1.0",
-    "documentation": "https://github.com/mariobrosch/Insurance-Monitor/tree/main",
+    "documentation": "https://github.com/mariobrosch/Subscription-Monitor",
     "requirements": [],
     "dependencies": [],
     "codeowners": ["@mariobrosch"],

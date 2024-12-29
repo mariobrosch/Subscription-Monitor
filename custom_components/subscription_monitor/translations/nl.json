@@ -4,7 +4,7 @@
         "step": {
             "user": {
                 "data": {
-                    "subscription_id": "Polisnummer",
+                    "subscription_id": "Abonnementnummer",
                     "cost_per_period": "Kosten per periode",
                     "period": "Periode",
                     "start_date": "Startdatum",
