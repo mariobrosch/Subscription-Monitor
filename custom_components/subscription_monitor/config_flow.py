@@ -22,7 +22,8 @@ class SubscriptionMonitorConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
             try:
                 float(user_input["cost_per_period"])
-                return self.async_create_entry(title=user_input["category"], data=user_input)
+                custom_title = f"{user_input["category"]}-{user_input["service_provider"]}"
+                return self.async_create_entry(title=custom_title, data=user_input)
             except ValueError:
                 errors["cost_per_period"] = "invalid_number"
 

@@ -7,12 +7,12 @@ from .const import DOMAIN
 async def async_setup_entry(hass, entry, async_add_entities):
     """Set up Subscription Monitor sensors from a config entry."""
     subscription = entry.data
-    device_id = f"{DOMAIN}_{subscription['subscription_id']}"
+    device_id = f"{DOMAIN}_{subscription['service_provider']}_{subscription['subscription_id']}"
     device_info = DeviceInfo(
-        identifiers={(DOMAIN, subscription['subscription_id'])},
+        identifiers={(DOMAIN, f"{subscription['service_provider']}_{subscription['subscription_id']}")},
         name=f"Subscription: {subscription['category']} - {subscription['service_provider']}",
-        manufacturer=subscription['service_provider'],
-        model=f"{subscription['category']}-{subscription['type']}",
+        manufacturer=f"mariobrosch",
+        model=f"{subscription['category']}-{subscription['service_provider']}-{subscription['type']}",
         sw_version="1.0",
         via_device=(DOMAIN, device_id)
     )
@@ -36,12 +36,18 @@ class SubscriptionAttributeSensor(SensorEntity):
         """Initialize the sensor."""
         self._subscription = subscription
         self._attribute = attribute
-        self._attr_name = f"Subscription {attribute.replace('_', ' ').title()}"
-        self._attr_unique_id = f"{subscription['subscription_id']}-{attribute}"
+        self._attr_name = f"{subscription['service_provider']} {subscription['subscription_id']} {attribute.replace('_', ' ').title()}"
+        self._attr_unique_id = f"{subscription['service_provider']}-{subscription['subscription_id']}-{attribute}"
+        self._attr_entity_id = f"sensor.{subscription['service_provider']}_{subscription['subscription_id']}_{attribute}"
         self._attr_device_info = device_info
 
     @property
     def state(self):
         """Return the state of the sensor."""
         return self._subscription.get(self._attribute, "Not specified")
+
+    async def async_set_value(self, value):
+        """Set the value of the sensor."""
+        self._subscription[self._attribute] = value
+        self.async_write_ha_state()
 
