@@ -7,5 +7,5 @@
     "dependencies": [],
     "codeowners": ["@mariobrosch"],
     "config_flow": true,
-    "icon": "custom_components/subscription_monitor/icon.png"
+    "icon": "/local/custom_component/subscription_monitor/icons/icon.png"
 }
