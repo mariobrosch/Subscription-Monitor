@@ -11,6 +11,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     """Set up Subscription Monitor from a config entry."""
     if DOMAIN not in hass.data:
         hass.data[DOMAIN] = {}
+
     hass.data[DOMAIN][entry.entry_id] = entry.data
 
     # Forward the entry to the sensor platform

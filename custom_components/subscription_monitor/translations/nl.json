@@ -6,9 +6,10 @@
                     "subscription_id": "Abonnement ID",
                     "cost_per_period": "Kosten per periode",
                     "period": "Periode",
-                    "start_date": "Startdatum",
-                    "end_date": "Einddatum",
+                    "start_date": "Startdatum (DD-MM-YYYY)",
+                    "end_date": "Einddatum (DD-MM-YYYY)",
                     "type": "Type abonnement",
+                    "category": "Categorie (streaming, verzekering, etc.)",
                     "service_provider": "Dienstverlener",
                     "notice_period": "Opzegtermijn",
                     "remarks": "Opmerkingen"
