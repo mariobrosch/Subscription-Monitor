@@ -1,1 +1,0 @@
-DOMAIN = "insurance_monitor"

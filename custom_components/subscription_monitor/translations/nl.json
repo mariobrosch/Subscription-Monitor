@@ -1,0 +1,22 @@
+{
+    "title": "Abonnement Monitor",
+    "config": {
+        "step": {
+            "user": {
+                "data": {
+                    "subscription_id": "Polisnummer",
+                    "cost_per_period": "Kosten per periode",
+                    "period": "Periode",
+                    "start_date": "Startdatum",
+                    "end_date": "Einddatum",
+                    "type": "Type abonnement",
+                    "company": "Bedrijf",
+                    "remarks": "Opmerkingen",
+                    "who": "Wie of wat heeft dit abonnement"
+                },
+                "description": "Extra opmerkingen over het abonnement.",
+                "title": "Abonnement toevoegen"
+            }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "title": "Subscription Monitor",
+    "config": {
+        "step": {
+            "user": {
+                "data": {
+                    "subscription_id": "Subscription Id",
+                    "cost_per_period": "Cost per period",
+                    "period": "Period",
+                    "start_date": "Startdate",
+                    "end_date": "Enddate",
+                    "type": "Type of subscription",
+                    "company": "Company",
+                    "remarks": "Remarks",
+                    "who": "Who or what is (for example Jane has this subscription))"
+                },
+                "description": "Add more information about the subscription.",
+                "title": "Add subscription"
+            }
+        }
+    }
+}

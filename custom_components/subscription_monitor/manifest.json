@@ -1,0 +1,11 @@
+{
+    "domain": "subscription_monitor",
+    "name": "Subscription Monitor",
+    "version": "1.0",
+    "documentation": "https://github.com/mariobrosch/Insurance-Monitor/tree/main",
+    "requirements": [],
+    "dependencies": [],
+    "codeowners": ["@mariobrosch"],
+    "config_flow": true,
+    "icon": "custom_components/subscription_monitor/icon.png"
+}
