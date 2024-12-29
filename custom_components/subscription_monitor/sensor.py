@@ -1,40 +1,47 @@
 from homeassistant.components.sensor import SensorEntity
+from homeassistant.helpers.entity import Entity
+from homeassistant.helpers.device_registry import DeviceInfo
 
 from .const import DOMAIN
 
 async def async_setup_entry(hass, entry, async_add_entities):
     """Set up Subscription Monitor sensors from a config entry."""
     subscription = entry.data
-    async_add_entities([SubscriptionSensor(subscription)], True)
+    device_id = f"{DOMAIN}_{subscription['subscription_id']}"
+    device_info = DeviceInfo(
+        identifiers={(DOMAIN, subscription['subscription_id'])},
+        name=f"Subscription: {subscription['category']} - {subscription['service_provider']}",
+        manufacturer=subscription['service_provider'],
+        model=f"{subscription['category']}-{subscription['type']}",
+        sw_version="1.0",
+        via_device=(DOMAIN, device_id)
+    )
+    entities = [
+        SubscriptionAttributeSensor(subscription, "subscription_id", device_info),
+        SubscriptionAttributeSensor(subscription, "service_provider", device_info),
+        SubscriptionAttributeSensor(subscription, "notice_period", device_info),
+        SubscriptionAttributeSensor(subscription, "period", device_info),
+        SubscriptionAttributeSensor(subscription, "start_date", device_info),
+        SubscriptionAttributeSensor(subscription, "end_date", device_info),
+        SubscriptionAttributeSensor(subscription, "remarks", device_info),
+        SubscriptionAttributeSensor(subscription, "category", device_info),
+        SubscriptionAttributeSensor(subscription, "type", device_info)
+    ]
+    async_add_entities(entities, True)
 
-class SubscriptionSensor(SensorEntity):
+class SubscriptionAttributeSensor(SensorEntity):
+    """Representation of a Subscription Monitor attribute sensor."""
 
-    def __init__(self, subscription):
+    def __init__(self, subscription, attribute, device_info):
         """Initialize the sensor."""
         self._subscription = subscription
-        # We are grouping the subscriptions by category, this makes it easier to group them automatically in the integration by for example streaming or insurances
-        self._attr_name = f"Subscription: {subscription['category']} - {subscription["service_provider"]}"
-        self._attr_unique_id = f"{subscription["subscription_id"]}-{subscription["service_provider"]}"
+        self._attribute = attribute
+        self._attr_name = f"Subscription {attribute.replace('_', ' ').title()}"
+        self._attr_unique_id = f"{subscription['subscription_id']}-{attribute}"
+        self._attr_device_info = device_info
 
     @property
     def state(self):
         """Return the state of the sensor."""
-        # We can only display one value as state, so we just return one of the required fields and that's the id
-        return self._subscription.get("subscription_id", "Unknown")
+        return self._subscription.get(self._attribute, "Not specified")
 
-    @property
-    def extra_state_attributes(self):
-        """Return additional state attributes."""
-        # Zorg ervoor dat alle ingevoerde gegevens hier worden weergegeven
-        return {
-            "Subscription ID": self._subscription.get("subscription_id", "Not specified"),
-            "Service Provider": self._subscription.get("service_provider", "Not specified"),
-            "Notice Period": self._subscription.get("notice_period", "Not specified"),
-            "Period": self._subscription.get("period", "Not specified"),
-            "Start Date": self._subscription.get("start_date", "Not specified"),
-            "End Date": self._subscription.get("end_date", "Not specified"),
-            "Remarks": self._subscription.get("remarks", "Not specified"),
-            "Category": self._subscription.get("category", "Not specified"),
-            "Type": self._subscription.get("type", "Not specified"),
-        }
-    

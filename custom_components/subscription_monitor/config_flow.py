@@ -18,18 +18,7 @@ class SubscriptionMonitorConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             user_input["notice_period"] = user_input.get("notice_period", "")
             user_input["start_date"] = user_input.get("start_date")
             user_input["end_date"] = user_input.get("end_date")
-            
-            # if user_input["end_date"]:
-            #     try:
-            #         return datetime.strptime(user_input["end_date"], "%d-%m-%Y")
-            #     except ValueError:
-            #         errors["end_date"] = "invalid_date"
-            # else: 
-            #     user_input["end_date"] = "31-12-2100"
-            # try:
-            #     return datetime.strptime(user_input["start_date"], "%d-%m-%Y")
-            # except ValueError:
-            #     errors["start_date"] = "invalid_date"                
+                        
 
             try:
                 float(user_input["cost_per_period"])
@@ -42,9 +31,9 @@ class SubscriptionMonitorConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             vol.Optional("cost_per_period", default=0): vol.Coerce(float),
             vol.Optional("period", default="none"): vol.In(["none", "day", "week", "month", "quarter", "year"]),
             vol.Required("start_date"): str,
-            vol.Optional("end_date"): str,
+            vol.Optional("end_date", default="31-12-2100"): str,
             vol.Required("category"): str,
-            vol.Optional("type"): str,
+            vol.Optional("type", default=""): str,
             vol.Required("service_provider"): str, 
             vol.Optional("notice_period", default=""): str,  
             vol.Optional("remarks", default=""): str,

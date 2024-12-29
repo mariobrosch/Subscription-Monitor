@@ -13,8 +13,7 @@
                     "category": "Category (streaming, insurance, etc.)",
                     "service_provider": "Service provider",
                     "remarks": "Remarks",
-                    "notice_period": "Notice period",
-                    "who": "Who or what is (for example Jane has this subscription))"
+                    "notice_period": "Notice period"
                 },
                 "description": "Add more information about the subscription.",
                 "title": "Add subscription"
