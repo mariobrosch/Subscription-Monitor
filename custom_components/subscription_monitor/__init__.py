@@ -4,13 +4,14 @@ from .const import DOMAIN
 
 async def async_setup(hass: HomeAssistant, config: dict):
     """Set up Subscription Monitor."""
-    hass.data.setdefault(DOMAIN, {})
+    if DOMAIN not in hass.data:
+        hass.data[DOMAIN] = {"entities": []}    
     return True
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     """Set up Subscription Monitor from a config entry."""
     if DOMAIN not in hass.data:
-        hass.data[DOMAIN] = {}
+        hass.data[DOMAIN] = {"entities": []}
 
     hass.data[DOMAIN][entry.entry_id] = entry.data
 
