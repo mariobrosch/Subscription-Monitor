@@ -1,10 +1,11 @@
 from homeassistant.components.sensor import SensorEntity
-from homeassistant.helpers.entity import Entity
+# from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.device_registry import DeviceInfo
+from homeassistant.config_entries import ConfigEntry
 
 from .const import DOMAIN
 
-async def async_setup_entry(hass, entry, async_add_entities):
+async def async_setup_entry(hass, entry: ConfigEntry, async_add_entities):
     """Set up Subscription Monitor sensors from a config entry."""
     subscription = entry.data
     device_id = f"{DOMAIN}_{subscription['service_provider']}_{subscription['subscription_id']}"
@@ -20,6 +21,7 @@ async def async_setup_entry(hass, entry, async_add_entities):
         SubscriptionAttributeSensor(subscription, "subscription_id", device_info),
         SubscriptionAttributeSensor(subscription, "service_provider", device_info),
         SubscriptionAttributeSensor(subscription, "notice_period", device_info),
+        SubscriptionAttributeSensor(subscription, "cost_per_period", device_info),
         SubscriptionAttributeSensor(subscription, "period", device_info),
         SubscriptionAttributeSensor(subscription, "start_date", device_info),
         SubscriptionAttributeSensor(subscription, "end_date", device_info),
