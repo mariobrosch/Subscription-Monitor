@@ -52,4 +52,16 @@ class SubscriptionAttributeSensor(SensorEntity):
         """Set the value of the sensor."""
         self._subscription[self._attribute] = value
         self.async_write_ha_state()
+        await self.async_update_device_info()
+
+    async def async_update_device_info(self):
+        """Update the device info if a property changes."""
+        device_registry = await self.hass.helpers.device_registry.async_get_registry()
+        device_entry = device_registry.async_get_device(self._attr_device_info["identifiers"])
+        if device_entry:
+            device_registry.async_update_device(
+                device_entry.id,
+                name=f"Subscription: {self._subscription['category']} - {self._subscription['service_provider']}",
+                model=f"{self._subscription['category']}-{self._subscription['service_provider']}-{self._subscription['type']}"
+            )
 

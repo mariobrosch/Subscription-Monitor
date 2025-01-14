@@ -6,6 +6,5 @@
     "requirements": [],
     "dependencies": [],
     "codeowners": ["@mariobrosch"],
-    "config_flow": true,
-    "icon": "/local/custom_component/subscription_monitor/icons/icon.png"
+    "config_flow": true
 }

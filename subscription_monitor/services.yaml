@@ -1,0 +1,14 @@
+update_subscription:
+  name: Update subscription
+  description: Update subscription details
+  target:
+    entity:
+      domain: sensor
+  fields:
+    value:
+      name: Value
+      description: New value for the subscription attribute
+      required: true
+      example: "10.99"
+      selector:
+        text:

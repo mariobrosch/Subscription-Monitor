@@ -17,12 +17,10 @@ class SubscriptionMonitorConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             user_input["period"] = user_input.get("period", "none")
             user_input["notice_period"] = user_input.get("notice_period", "")
             user_input["start_date"] = user_input.get("start_date")
-            user_input["end_date"] = user_input.get("end_date")
-                        
-
+            user_input["end_date"] = user_input.get("end_date")                    
             try:
                 float(user_input["cost_per_period"])
-                custom_title = f"{user_input["category"]}-{user_input["service_provider"]}"
+                custom_title = f"{user_input['category']}-{user_input['service_provider']}"
                 return self.async_create_entry(title=custom_title, data=user_input)
             except ValueError:
                 errors["cost_per_period"] = "invalid_number"
@@ -41,4 +39,3 @@ class SubscriptionMonitorConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         })
 
         return self.async_show_form(step_id="user", data_schema=data_schema, errors=errors)
-            
