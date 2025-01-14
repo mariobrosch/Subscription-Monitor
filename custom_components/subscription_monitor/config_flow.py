@@ -39,3 +39,36 @@ class SubscriptionMonitorConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         })
 
         return self.async_show_form(step_id="user", data_schema=data_schema, errors=errors)
+
+    @staticmethod
+    def async_get_options_flow(config_entry):
+        """Get the options flow for this handler."""
+        return SubscriptionMonitorOptionsFlow(config_entry)
+
+class SubscriptionMonitorOptionsFlow(config_entries.OptionsFlow):
+    """Handle options."""
+
+    def __init__(self, config_entry):
+        """Initialize options flow."""
+        self.config_entry = config_entry
+
+    async def async_step_init(self, user_input=None):
+        """Handle options flow."""
+        if user_input is not None:
+            # Create a new dictionary for updating the data
+            updated_data = {**self.config_entry.data, "remarks": user_input["remarks"]}
+            self.hass.config_entries.async_update_entry(
+                self.config_entry,
+                data=updated_data,
+            )
+            return self.async_create_entry(title="", data={})
+
+        return self.async_show_form(
+            step_id="init",
+            data_schema=vol.Schema({
+                vol.Optional(
+                    "remarks",
+                    default=self.config_entry.data.get("remarks", "")
+                ): str,
+            })
+        )
